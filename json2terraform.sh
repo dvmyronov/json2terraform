@@ -13,7 +13,7 @@ echo "$json" | jq . | sed "1s/{/resource \"${name}\" \"${id}\" {/" | sed -n '
     /{/ {/\\\\{/! {x;s/$/{/;x}};                #If { is found in pattern space; if not escaped by \\; swap hold space with pattern space and append {; then swap back
     /\[/ {/\\\\\[/! {x;s/$/\[/;x}};             #If [ is found in pattern space; if not escaped by \\; swap hold space with pattern space and append [; then swap back             
     /}/ {/\\\\}/! {x;s/.$//;x}};                #If } is found in pattern space; if not escaped by \\; swap hold space with pattern space; remove the last character, and swap back.
-    /\]/ {/\\\\\]/! {x;s/.$//;x}};              #If ] is found in pattern space, if not escaped by \\; swap hold space with pattern space, remove the last character, and swap back.
+    /\]/ {/\\\\\]/! {x;s/.$//;x}};              #If ] is found in pattern space, if not escaped by \\;  swap hold space with pattern space, remove the last character, and swap back.
     x;                                          #swap hold space and pattern space
     /{$/ {x;s/,$//;x};                          #if last char is {, swap back, remove trailing comma, and swap again. 
     x;                                          #swap hold space and pattern space
